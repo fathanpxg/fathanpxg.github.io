@@ -10,6 +10,7 @@ fetch('data/products.json')
         <h4>${product.name}</h4>
         <p>Rp ${product.price.toLocaleString('id-ID')}</p>
         <a href="formbeli.html?product=${encodeURIComponent(product.name)}">
+
           <button class="buy-btn">Beli</button>
         </a>
       `;
