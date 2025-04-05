@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Pembelian</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">BlueShop</div>
+  </header>
+
+  <main style="padding: 2rem;">
+    <h2>Form Pembelian</h2>
+    <form id="purchaseForm">
+      <label for="product">Produk:</label>
+      <input type="text" id="product" name="product" readonly><br><br>
+
+      <label for="name">Nama Anda:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="address">Alamat:</label>
+      <textarea id="address" name="address" required></textarea><br><br>
+
+      <button type="submit">Kirim Pesanan</button>
+    </form>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product");
+    document.getElementById("product").value = product || "";
+  </script>
+</body>
+</html>
