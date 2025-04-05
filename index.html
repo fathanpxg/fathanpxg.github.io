@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Dasbor Android</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dasbor Responsive</title>
   <style>
     * {
       box-sizing: border-box;
@@ -15,10 +15,6 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f0f0;
       color: #333;
-    }
-
-    /* Mobile layout */
-    .mobile-only {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -37,12 +33,12 @@
     }
 
     main h2 {
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     main p {
-      font-size: 14px;
+      font-size: 16px;
     }
 
     footer {
@@ -53,48 +49,65 @@
       color: #444;
     }
 
-    /* Desktop warning message */
-    .desktop-message {
-      display: none;
+    /* Navigation (optional, for desktop) */
+    nav {
+      background-color: #e0e0e0;
+      padding: 10px 0;
+      text-align: center;
     }
 
-    @media (min-width: 601px) {
-      .mobile-only {
-        display: none;
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      font-size: 16px;
+      color: #333;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
       }
 
-      .desktop-message {
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
+      main h2 {
         font-size: 18px;
-        background-color: #fff3cd;
-        color: #856404;
+      }
+
+      main p {
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="mobile-only">
-    <header>
-      <h1>📱 Dasbor Mobile</h1>
-    </header>
+  <header>
+    <h1>📊 Dasbor Responsive</h1>
+  </header>
 
-    <main>
-      <h2>Selamat datang!</h2>
-      <p>Ini tampilan khusus Android dengan header dan footer.</p>
-    </main>
+  <nav>
+    <ul>
+      <li>🏠 Home</li>
+      <li>📁 Data</li>
+      <li>⚙️ Pengaturan</li>
+    </ul>
+  </nav>
 
-    <footer>
-      <p>&copy; 2025 Aplikasi Mobile</p>
-    </footer>
-  </div>
+  <main>
+    <h2>Selamat datang!</h2>
+    <p>Ini adalah dasbor yang bisa dibuka dari Android maupun Desktop.</p>
+  </main>
 
-  <div class="desktop-message">
-    <p>⚠️ Aplikasi ini hanya tersedia di perangkat Android / mobile.</p>
-  </div>
+  <footer>
+    <p>&copy; 2025 Aplikasi Responsive</p>
+  </footer>
 </body>
 </html>
