@@ -4,30 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Dasbor Android</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    /* Mobile layout */
+    .mobile-only {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #2196f3;
+      color: white;
+      padding: 16px;
+      text-align: center;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    main h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    main p {
+      font-size: 14px;
+    }
+
+    footer {
+      background-color: #ddd;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Desktop warning message */
+    .desktop-message {
+      display: none;
+    }
+
+    @media (min-width: 601px) {
+      .mobile-only {
+        display: none;
+      }
+
+      .desktop-message {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        background-color: #fff3cd;
+        color: #856404;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="mobile-only">
     <header>
-      <h1>Dashboard</h1>
+      <h1>📱 Dasbor Mobile</h1>
     </header>
-
-    <nav>
-      <ul>
-        <li>🏠 Home</li>
-        <li>📊 Data</li>
-        <li>⚙️ Pengaturan</li>
-      </ul>
-    </nav>
 
     <main>
       <h2>Selamat datang!</h2>
-      <p>Ini tampilan khusus Android/mobile.</p>
+      <p>Ini tampilan khusus Android dengan header dan footer.</p>
     </main>
+
+    <footer>
+      <p>&copy; 2025 Aplikasi Mobile</p>
+    </footer>
   </div>
 
   <div class="desktop-message">
-    <p>⚠️ Aplikasi ini hanya tersedia untuk perangkat Android / mobile.</p>
+    <p>⚠️ Aplikasi ini hanya tersedia di perangkat Android / mobile.</p>
   </div>
 </body>
 </html>
