@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dasbor Responsive</title>
+  <title>Marketplace</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f0;
+      background-color: #f9f9f9;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -21,10 +21,32 @@
     }
 
     header {
-      background-color: #2196f3;
+      background-color: #4caf50;
       color: white;
       padding: 16px;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      font-size: 16px;
+      cursor: pointer;
+      color: #4caf50;
+      font-weight: bold;
     }
 
     main {
@@ -32,82 +54,148 @@
       padding: 20px;
     }
 
-    main h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    main p {
-      font-size: 16px;
-    }
-
-    footer {
-      background-color: #ddd;
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-      color: #444;
-    }
-
-    /* Navigation (optional, for desktop) */
-    nav {
-      background-color: #e0e0e0;
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    nav ul {
-      list-style: none;
+    .market-header {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
+      margin-bottom: 20px;
     }
 
-    nav ul li {
-      font-size: 16px;
+    .market-header h2 {
+      font-size: 20px;
       color: #333;
     }
 
-    /* Responsive tweaks */
+    .market-header button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .market-header button:hover {
+      background-color: #45a045;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 16px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .product-card .price {
+      font-weight: bold;
+      color: #4caf50;
+      margin-top: 8px;
+    }
+
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      color: #777;
+    }
+
     @media (max-width: 600px) {
       nav ul {
         flex-direction: column;
+        align-items: center;
+      }
+
+      .market-header {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
       }
 
-      main h2 {
-        font-size: 18px;
-      }
-
-      main p {
-        font-size: 14px;
+      .market-header button {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>📊 Dasbor Responsive</h1>
+    <h1>🛒 MarketPlaceKu</h1>
   </header>
 
   <nav>
     <ul>
-      <li>🏠 Home</li>
-      <li>📁 Data</li>
-      <li>⚙️ Pengaturan</li>
+      <li>Beranda</li>
+      <li>Produk</li>
+      <li>Penjualan</li>
+      <li>Akun</li>
     </ul>
   </nav>
 
   <main>
-    <h2>Selamat datang!</h2>
-    <p>Ini adalah dasbor yang bisa dibuka dari Android maupun Desktop.</p>
+    <div class="market-header">
+      <h2>Daftar Produk</h2>
+      <button>+ Jual Produk</button>
+    </div>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x140?text=Produk+1" alt="Produk 1" />
+        <h3>Kemeja Katun</h3>
+        <p>Kemeja lengan panjang bahan adem</p>
+        <div class="price">Rp 120.000</div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x140?text=Produk+2" alt="Produk 2" />
+        <h3>Sepatu Sneaker</h3>
+        <p>Model terbaru, nyaman dipakai</p>
+        <div class="price">Rp 350.000</div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x140?text=Produk+3" alt="Produk 3" />
+        <h3>Tas Ransel</h3>
+        <p>Kapasitas besar, cocok untuk kerja</p>
+        <div class="price">Rp 180.000</div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 Aplikasi Responsive</p>
+    <p>&copy; 2025 MarketPlaceKu | Semua Hak Dilindungi</p>
   </footer>
 </body>
 </html>
