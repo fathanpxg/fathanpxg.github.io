@@ -8,6 +8,30 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<script>
+  document.getElementById("produksiForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const tanggal = document.getElementById("tanggal").value;
+    const jenis = document.getElementById("jenis").value;
+    const jumlah = document.getElementById("jumlah").value;
+    const catatan = document.getElementById("catatan").value;
+
+    try {
+      await db.collection("produksi").add({
+        tanggal,
+        jenis,
+        jumlah: parseFloat(jumlah),
+        catatan,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      alert("Data berhasil disimpan!");
+      this.reset();
+    } catch (error) {
+      alert("Gagal menyimpan: " + error.message);
+    }
+  });
+</script>
 
 </head>
 <body class="bg-gray-50 min-h-screen p-6">
