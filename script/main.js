@@ -19,4 +19,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   } catch (error) {
     document.getElementById("error").innerText = error.message;
   }
+  if (user.email === "admin@example.com") {
+  window.location.href = "dashboard.html";
+} else {
+  window.location.href = "input.html";
+}
+
 });
