@@ -6,33 +6,8 @@
   <title>Input Produksi - Karyawan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-<script>
-  document.getElementById("produksiForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const tanggal = document.getElementById("tanggal").value;
-    const jenis = document.getElementById("jenis").value;
-    const jumlah = document.getElementById("jumlah").value;
-    const catatan = document.getElementById("catatan").value;
-
-    try {
-      await db.collection("produksi").add({
-        tanggal,
-        jenis,
-        jumlah: parseFloat(jumlah),
-        catatan,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      alert("Data berhasil disimpan!");
-      this.reset();
-    } catch (error) {
-      alert("Gagal menyimpan: " + error.message);
-    }
-  });
-</script>
-
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen p-6">
   <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow">
@@ -44,18 +19,72 @@
       </div>
       <div>
         <label class="block text-sm font-medium">Jenis Produk</label>
-        <input type="text" id="jenis" placeholder="Misalnya: Beton K300" class="w-full p-2 border rounded-lg" required>
+        <select id="jenis" class="w-full p-2 border rounded-lg" required>
+          <option value="">Pilih Jenis Produk</option>
+          <option value="u-ditch">U-Ditch</option>
+          <option value="deker">Deker</option>
+        </select>
       </div>
       <div>
-        <label class="block text-sm font-medium">Jumlah Produksi (m³)</label>
+        <label class="block text-sm font-medium">Ukuran</label>
+        <select id="ukuran" class="w-full p-2 border rounded-lg" required>
+          <option value="">Pilih ukuran</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Jumlah Produksi (pcs)</label>
         <input type="number" id="jumlah" class="w-full p-2 border rounded-lg" required>
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Catatan</label>
-        <textarea id="catatan" class="w-full p-2 border rounded-lg"></textarea>
       </div>
       <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Simpan</button>
     </form>
   </div>
+
+  <script src="firebase-config.js"></script>
+  <script>
+    const ukuranSelect = document.getElementById("ukuran");
+    const jenisSelect = document.getElementById("jenis");
+
+    const ukuranOptions = {
+      "u-ditch": ["20", "30", "30x40", "40x40", "50"],
+      "deker": ["30x40", "40x60", "60x60", "60x80", "60x100"]
+    };
+
+    jenisSelect.addEventListener("change", () => {
+      const jenis = jenisSelect.value;
+      ukuranSelect.innerHTML = '<option value="">Pilih ukuran</option>';
+      if (ukuranOptions[jenis]) {
+        ukuranOptions[jenis].forEach(ukuran => {
+          const option = document.createElement("option");
+          option.value = ukuran;
+          option.textContent = ukuran;
+          ukuranSelect.appendChild(option);
+        });
+      }
+    });
+
+    document.getElementById("produksiForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const tanggal = document.getElementById("tanggal").value;
+      const jenis = document.getElementById("jenis").value;
+      const ukuran = document.getElementById("ukuran").value;
+      const jumlah = document.getElementById("jumlah").value;
+
+      try {
+        await db.collection("produksi").add({
+          tanggal,
+          jenis,
+          ukuran,
+          jumlah: parseInt(jumlah),
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert("Data berhasil disimpan!");
+        this.reset();
+        ukuranSelect.innerHTML = '<option value="">Pilih ukuran</option>';
+      } catch (error) {
+        alert("Gagal menyimpan: " + error.message);
+      }
+    });
+  </script>
 </body>
 </html>
