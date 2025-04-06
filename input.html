@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Produksi - Karyawan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow">
+    <h1 class="text-2xl font-bold text-blue-600 mb-4">Input Produksi Beton</h1>
+    <form id="produksiForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Tanggal Produksi</label>
+        <input type="date" id="tanggal" class="w-full p-2 border rounded-lg" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Jenis Produk</label>
+        <input type="text" id="jenis" placeholder="Misalnya: Beton K300" class="w-full p-2 border rounded-lg" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Jumlah Produksi (m³)</label>
+        <input type="number" id="jumlah" class="w-full p-2 border rounded-lg" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Catatan</label>
+        <textarea id="catatan" class="w-full p-2 border rounded-lg"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Simpan</button>
+    </form>
+  </div>
+</body>
+</html>
