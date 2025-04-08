@@ -94,22 +94,34 @@
       }
 
       db.ref('users/' + role).once('value').then(snapshot => {
-        const data = snapshot.val();
-        if (data && data.username === username && data.password === password) {
-          if (role === "admin") {
-            location.href = "admin-dashboard.html";
-          } else if (role === "karyawan") {
-            location.href = "karyawan-dashboard.html";
-          } else {
-            location.href = "pembukuan-dashboard.html";
-          }
-        } else {
-          alert("Username atau Password salah!");
-        }
-      }).catch(error => {
-        console.error(error);
-        alert("Terjadi kesalahan saat login.");
-      });
+  const users = snapshot.val();
+  let loginBerhasil = false;
+
+  for (let key in users) {
+    if (
+      users[key].username === username &&
+      users[key].password === password
+    ) {
+      loginBerhasil = true;
+      break;
+    }
+  }
+
+  if (loginBerhasil) {
+    if (role === "admin") {
+      location.href = "admin-dashboard.html";
+    } else if (role === "karyawan") {
+      location.href = "karyawan-dashboard.html";
+    } else {
+      location.href = "pembukuan-dashboard.html";
+    }
+  } else {
+    alert("Username atau Password salah!");
+  }
+}).catch(error => {
+  console.error(error);
+  alert("Terjadi kesalahan saat login.");
+});
     }
 
     // Blok akses non-Android
