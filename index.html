@@ -136,6 +136,7 @@
       const dbRef = firebase.database().ref("users/" + role);
       dbRef.once("value", function(snapshot) {
         const userData = snapshot.val();
+        console.log("Data dari Firebase:", userData);
         if (userData && userData.username === username && userData.password === password) {
           alert("Login berhasil sebagai " + role);
           if (role === "admin") {
