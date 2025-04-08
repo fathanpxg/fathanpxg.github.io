@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Login - CV. ENAM PUTRA CIREBON Cabang Beber</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #1976d2, #42a5f5);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .login-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 320px;
+    }
+    h2 { color: #333; margin-bottom: 20px; }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #1976d2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>CV. ENAM PUTRA CIREBON<br>Cabang Beber</h2>
+    <label for="role">Masuk sebagai:</label>
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="karyawan">Karyawan</option>
+    </select>
+    <button onclick="masuk()">Masuk</button>
+  </div>
+  <div class="footer">Powered By. PEXONG</div>
+
+  <script>
+    function masuk() {
+      const role = document.getElementById('role').value;
+      if (role === "admin") {
+        location.href = "admin-dashboard.html";
+      } else {
+        location.href = "karyawan-dashboard.html";
+      }
+    }
+
+    // Detect if not Android
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (!userAgent.includes("android")) {
+      document.body.innerHTML = "<h2>Maaf, situs ini hanya dapat diakses melalui perangkat Android.</h2>";
+    }
+  </script>
+</body>
+</html>
