@@ -27,7 +27,7 @@
       color: white;
     }
 
-    .login-container {
+    .login-container, .dashboard {
       background: white;
       padding: 24px;
       border-radius: 20px;
@@ -88,10 +88,14 @@
       color: white;
       font-size: 14px;
     }
+
+    .dashboard {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div class="login-container">
+  <div class="login-container" id="loginContainer">
     <img src="IMG_20250308_210839.png" alt="Logo" class="logo">
     <div class="title">CV. ENAM PUTRA CIREBON Cabang Beber</div>
     <h2>Login</h2>
@@ -104,6 +108,27 @@
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Dashboard Admin -->
+  <div class="dashboard" id="dashboard-admin">
+    <h2>Dashboard Admin</h2>
+    <p>Selamat datang, Admin!</p>
+    <button onclick="logout()">Keluar</button>
+  </div>
+
+  <!-- Dashboard Karyawan -->
+  <div class="dashboard" id="dashboard-karyawan">
+    <h2>Dashboard Karyawan</h2>
+    <p>Selamat datang, Karyawan!</p>
+    <button onclick="logout()">Keluar</button>
+  </div>
+
+  <!-- Dashboard Pembukuan -->
+  <div class="dashboard" id="dashboard-pembukuan">
+    <h2>Dashboard Pembukuan</h2>
+    <p>Selamat datang, Pembukuan!</p>
+    <button onclick="logout()">Keluar</button>
   </div>
 
   <footer>Powered By. PEXONG</footer>
@@ -138,11 +163,24 @@
         const userData = snapshot.val();
         if (userData && userData.username === username && userData.password === password) {
           alert("Login berhasil sebagai " + role);
-          window.location.href = role + ".html";
+          document.getElementById("loginContainer").style.display = "none";
+          document.getElementById("dashboard-admin").style.display = (role === "admin") ? "block" : "none";
+          document.getElementById("dashboard-karyawan").style.display = (role === "karyawan") ? "block" : "none";
+          document.getElementById("dashboard-pembukuan").style.display = (role === "pembukuan") ? "block" : "none";
         } else {
           alert("Username atau password salah");
         }
       });
+    }
+
+    function logout() {
+      document.getElementById("loginContainer").style.display = "block";
+      document.getElementById("dashboard-admin").style.display = "none";
+      document.getElementById("dashboard-karyawan").style.display = "none";
+      document.getElementById("dashboard-pembukuan").style.display = "none";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("role").value = "";
     }
   </script>
 </body>
