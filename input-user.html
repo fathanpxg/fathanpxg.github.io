@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Input User</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #2196F3, #1E88E5);
+      color: white;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      background: #f2f2f2;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #1976D2;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Input Data User</h2>
+    <select id="role">
+      <option value="" disabled selected>Pilih Role</option>
+      <option value="admin">Admin</option>
+      <option value="karyawan">Karyawan</option>
+      <option value="pembukuan">Pembukuan</option>
+    </select>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="simpanUser()">Simpan User</button>
+  </div>
+
+  <footer>Powered By. PEXONG</footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script>
+    // Konfigurasi Firebase
+    var firebaseConfig = {
+      apiKey: "AIzaSyDaa9UfTkUM3V89dIMz1KRsyYWH7HcyKKw",
+      authDomain: "cvenamputra-28fb9.firebaseapp.com",
+      databaseURL: "https://cvenamputra-28fb9-default-rtdb.firebaseio.com",
+      projectId: "cvenamputra-28fb9",
+      storageBucket: "cvenamputra-28fb9.appspot.com",
+      messagingSenderId: "561519422676",
+      appId: "1:561519422676:web:0ca97e6071c1ed2b4b1f41"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    function simpanUser() {
+      const role = document.getElementById("role").value;
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!role || !username || !password) {
+        alert("Semua kolom wajib diisi!");
+        return;
+      }
+
+      const userRef = firebase.database().ref("users/" + role);
+      const newUser = {
+        username: username,
+        password: password
+      };
+
+      userRef.push(newUser, function(error) {
+        if (error) {
+          alert("Gagal menyimpan data!");
+        } else {
+          alert("User berhasil disimpan!");
+          document.getElementById("username").value = "";
+          document.getElementById("password").value = "";
+          document.getElementById("role").value = "";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
