@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Login - CV. ENAM PUTRA CIREBON Cabang Beber</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e3f2fd; color: #0d47a1;
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+    }
+    .login-box {
+      background: white; padding: 25px; border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      width: 90%; max-width: 350px; text-align: center;
+    }
+    .logo {
+      width: 100px; height: 100px; margin-bottom: 10px; object-fit: contain;
+    }
+    h2 {
+      color: #1565c0; font-size: 18px; margin-bottom: 20px; line-height: 1.4;
+    }
+    label {
+      display: block; margin: 10px 0 5px; font-weight: bold;
+      color: #0d47a1; text-align: left;
+    }
+    select, input {
+      width: 100%; padding: 12px; margin-bottom: 15px;
+      border: 1px solid #90caf9; border-radius: 12px;
+      background-color: #f1faff; font-size: 15px; color: #0d47a1;
+    }
+    input::placeholder { color: #90caf9; }
+    button {
+      width: 100%; padding: 12px; background-color: #2196f3;
+      color: white; border: none; border-radius: 12px;
+      font-size: 16px; font-weight: bold; cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover { background-color: #1976d2; }
+    .footer {
+      margin-top: 20px; font-weight: bold;
+      color: #1976d2; font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <img src="logo.png" alt="Logo Perusahaan" class="logo">
+    <h2>CV. ENAM PUTRA CIREBON<br>Cabang Beber</h2>
+    <label for="role">Masuk sebagai:</label>
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="karyawan">Karyawan</option>
+      <option value="pembukuan">Pembukuan</option>
+    </select>
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Masukkan username">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Masukkan password">
+    <button onclick="masuk()">Masuk</button>
+    <div class="footer">Powered By. PEXONG</div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"></script>
+
+  <script>
+    // Ganti dengan konfigurasi Firebase kamu
+    const firebaseConfig = {
+      apiKey: "AIzaSyDaa9UfTkUM3V89dIMz1KRsyYWH7HcyKKw",
+  authDomain: "cvenamputra-28fb9.firebaseapp.com",
+  databaseURL: "https://cvenamputra-28fb9-default-rtdb.firebaseio.com",
+  projectId: "cvenamputra-28fb9",
+  storageBucket: "cvenamputra-28fb9.firebasestorage.app",
+  messagingSenderId: "561519422676",
+  appId: "1:561519422676:web:0ca97e6071c1ed2b4b1f41",
+  measurementId: "G-5HPPL7P10M"
+};
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function masuk() {
+      const role = document.getElementById('role').value;
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        alert("Harap isi semua kolom!");
+        return;
+      }
+
+      db.ref('users/' + role).once('value').then(snapshot => {
+        const data = snapshot.val();
+        if (data && data.username === username && data.password === password) {
+          if (role === "admin") {
+            location.href = "admin-dashboard.html";
+          } else if (role === "karyawan") {
+            location.href = "karyawan-dashboard.html";
+          } else {
+            location.href = "pembukuan-dashboard.html";
+          }
+        } else {
+          alert("Username atau Password salah!");
+        }
+      }).catch(error => {
+        console.error(error);
+        alert("Terjadi kesalahan saat login.");
+      });
+    }
+
+    // Blok akses non-Android
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (!userAgent.includes("android")) {
+      document.body.innerHTML = "<h2 style='color:#0d47a1;text-align:center;padding:20px;'>Maaf, situs ini hanya dapat diakses melalui perangkat Android.</h2>";
+    }
+  </script>
+</body>
+</html>
