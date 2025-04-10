@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Pencari Aman (VPN)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    h1 { margin-bottom: 20px; font-size: 22px; }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #00cec9;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      text-align: center;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pencarian Aman Lewat Proxy</h1>
+    <form onsubmit="searchWithProxy(event)">
+      <input type="text" id="query" placeholder="Ketik pencarian..." required>
+      <button type="submit">Cari Sekarang</button>
+    </form>
+    <footer>Powered By. PEXONG | via Whoogle Proxy</footer>
+  </div>
+
+  <script>
+    function searchWithProxy(event) {
+      event.preventDefault();
+      const query = document.getElementById("query").value;
+      const baseURL = "https://whooglesearch.net/search?q=";
+      window.open(baseURL + encodeURIComponent(query), "_blank");
+    }
+  </script>
+</body>
+</html>
